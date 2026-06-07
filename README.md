@@ -1,16 +1,63 @@
-# React + Vite
+# Indie-Streamer (Gay Listens)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An elegant, dark-themed indie music streaming web application built with React, Vite, and Tailwind CSS. The app features a layout inspired by modern music streaming services, with global audio controls and future integration with the Jamendo API.
 
-Currently, two official plugins are available:
+## 🎵 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Global Audio State**: Seamless playback across page navigation using React Context.
+- **Fixed Player Bar**: Bottom control bar with Play/Pause, Volume adjustment (with custom styling), track metadata (title, artist, album art), and toggles for Shuffle/Repeat.
+- **Navigation Sidebar**: Quick access to Home, Search, Curated, and Library sections.
+- **Responsive Layout**: Designed for modern displays with a clean, dark-mode-first theme.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core**: [React 19](https://react.dev/) + [Vite 8](https://vite.dev/)
+- **Routing**: [React Router DOM v7](https://reactrouter.com/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+├── main.jsx                # Entry point
+├── App.jsx                 # Layout and route definitions
+├── index.css               # Tailwind directives and global styling
+├── api/
+│   └── jamendoClient.js    # Client bridge for Jamendo API
+├── components/layout/
+│   ├── Sidebar.jsx         # Sidebar navigation component
+│   └── PlayerBar.jsx       # Bottom player control bar
+├── context/
+│   └── AudioContext.jsx    # Global audio provider and player state management
+├── hooks/
+│   └── useAudio.js         # Custom hook to consume AudioContext
+└── pages/
+    ├── Home.jsx            # Home page component
+    └── Search.jsx          # Search page component
+```
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Run the Development Server
+```bash
+npm run dev
+```
+
+### 3. Build for Production
+```bash
+npm run build
+```
+
+## 📝 Future Development
+
+- Complete the integration with the **Jamendo API** in `src/api/jamendoClient.js` to fetch real indie tracks.
+- Connect the progress bar in `PlayerBar.jsx` to real-time audio playback (`currentTime` and `duration` from the `<audio>` element).
+- Wire up the Shuffle & Repeat functionality.
+- Build out the `/curated` and `/library` routes.
+
