@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* Quick reset to make sure scrollbars look good on your dark theme application */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
