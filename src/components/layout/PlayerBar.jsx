@@ -20,13 +20,30 @@ const PlayerBar = () => {
     skipPrevious,
     volume,
     setVolume,
+    progress,
+    duration,
+    seekAudio,
   } = useAudio();
 
-  const [isShuffle, setIsShuffle] = useState(false); {/*does nothing */}
-  const [isRepeat, setIsRepeat] = useState(false); {/*does nothing */}
+  const [isShuffle, setIsShuffle] = useState(false);
+  {
+    /*does nothing */
+  }
+  const [isRepeat, setIsRepeat] = useState(false);
+  {
+    /*does nothing */
+  }
 
- 
   const volumePercentage = Math.round(volume * 100);
+
+  const formatTime = (timeInSeconds) => {
+    if (isNaN(timeInSeconds)) return "0:00";
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  const progressPercentage = duration > 0 ? (progress / duration) * 100 : 0;
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -66,7 +83,9 @@ const PlayerBar = () => {
           <button
             onClick={() => setIsShuffle(!isShuffle)}
             className={`transition-colors w-10 h-10 flex items-center justify-center ${
-              isShuffle ? "text-emerald-400 hover:text-emerald-300" : "text-neutral-400 hover:text-neutral-200"
+              isShuffle
+                ? "text-emerald-400 hover:text-emerald-300"
+                : "text-neutral-400 hover:text-neutral-200"
             }`}
           >
             <Shuffle size={20} />
@@ -100,19 +119,29 @@ const PlayerBar = () => {
           <button
             onClick={() => setIsRepeat(!isRepeat)}
             className={`transition-colors w-10 h-10 flex items-center justify-center ${
-              isRepeat ? "text-emerald-400 hover:text-emerald-300" : "text-neutral-400 hover:text-neutral-200"
+              isRepeat
+                ? "text-emerald-400 hover:text-emerald-300"
+                : "text-neutral-400 hover:text-neutral-200"
             }`}
           >
             <Repeat size={20} />
           </button>
         </div>
-{/* hardcoded progress bar*/}
+        {/* hardcoded progress bar*/}
         <div className="w-full flex items-center gap-3 font-mono text-[11px] text-neutral-500 select-none">
-          <span>0:00</span>
-          <div className="flex-1 h-1 bg-neutral-800 rounded-full overflow-hidden relative group cursor-pointer">
-            <div className="absolute top-0 left-0 bottom-0 w-1/3 bg-emerald-500 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
-          </div>
-          <span>{currentTrack ? "3:45" : "0:00"}</span>
+          <span>{formatTime(progress)}</span>
+          <input
+            type="range"
+            min="0"
+            max={duration || 0}
+            value={progress}
+            onChange={(e) => seekAudio(parseFloat(e.target.value))}
+            className="flex-1 h-1 bg-neutral-800 rounded-full appearance-none cursor-pointer accent-emerald-400 focus:outline-none"
+            style={{
+              background: `linear-gradient(to right, #10b981 0%, #10b981 ${progressPercentage}%, #262626 ${progressPercentage}%, #262626 100%)`,
+            }}
+          />
+          <span>{formatTime(duration)}</span>
         </div>
       </div>
 
