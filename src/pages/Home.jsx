@@ -72,9 +72,10 @@ export default function Home() {
             {/* Top section: Artist Card & Badge */}
             <div className="flex gap-6 relative z-10">
               {/* White Artist Card */}
-              <div className="bg-white rounded-[2rem] p-6 w-[340px] text-black shadow-2xl relative shrink-0">
+              
+              <div className="bg-white rounded-[2rem] p-6 w-[340px] text-black shadow-2xl flex flex-col relative shrink-0">
                 <div className="flex justify-between items-start mb-4">
-                  <img src="https://i.scdn.co/image/ab6761610000e5ebd9fdfe0fbadaebe43a49f1db" alt="Travis Scott" className="w-20 h-20 rounded-full shadow-md object-cover" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Travis_Scott_-_Openair_Frauenfeld_2019_08_%28cropped%29.jpg" alt="Travis Scott" className="w-20 h-20 rounded-full shadow-md object-cover" />
                   <button className="text-neutral-400 hover:text-black transition-colors"><MoreHorizontal size={24} /></button>
                 </div>
                 
@@ -116,14 +117,15 @@ export default function Home() {
                 </div>
                 <div className="space-y-3">
                   {mockTracks.slice(0, 4).map((track, i) => (
-                    <div key={track.id} className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-2 rounded-xl transition-colors">
-                      <span className="text-neutral-300 font-medium w-4 text-center">{i + 1}</span>
-                      <img src={track.albumArt} alt="" className="w-10 h-10 rounded-md shadow-sm" />
+                    <div key={track.id} onClick={()=>playTrack(track, mockTracks)} className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-2 rounded-xl transition-colors">
+                      <span className="text-neutral-300 font-medium w-4 text-center flex-shrink-0">{i + 1}</span>
+                      <img src={track.albumArt} alt="" className="w-10 h-10 rounded-md shadow-sm flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold truncate">{track.title}</p>
+                        <p className="text-xs text-neutral-400 truncate mt-0.5">{track.artist}</p>
                       </div>
-                      <span className="text-xs text-neutral-300 font-mono hidden sm:block">{(Math.random() * 500000000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-                      <span className="text-xs text-neutral-300 font-mono w-10 text-right">{formatTime(track.duration)}</span>
+                      
+                      <span className="text-xs text-neutral-300 font-mono w-12 text-right flex-shrink-0">{formatTime(track.duration)}</span>
                       <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button className="text-neutral-300 hover:text-white"><Plus size={18} /></button>
                         <button className="text-emerald-400 hover:text-emerald-300"><Heart size={18} fill="currentColor" /></button>

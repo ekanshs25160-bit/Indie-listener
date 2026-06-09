@@ -15,20 +15,17 @@ const AppLayout = () => {
   // Dynamically switch background source: use album art if playing, otherwise fall back to your hero graphic
   const currentBg = currentTrack?.albumArt ? currentTrack.albumArt : defaultHero;
   return (
-    <div className="flex h-screen w-full text-black overflow-hidden font-sans relative">
+    <div className="flex h-screen w-full bg-[#f5f5f5] text-black overflow-hidden font-sans relative">
       {/* Dynamic Background Image with ambient animation/transition */}
       {currentBg && (
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 ease-in-out scale-105"
+          className="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
           style={{ 
-            backgroundImage: `url(${currentBg})`,
-            filter: "blur(40px) brightness(1.1)",
-            opacity: 0.45
+            backgroundImage: `url("${currentBg}")`,
+            opacity: 0.99
           }}
         />
       )}
-      {/* Light Overlay to keep readability */}
-      <div className="absolute inset-0 z-0 bg-[#f5f5f5]/65 pointer-events-none" />
 
       <div className="flex-1 relative overflow-hidden flex flex-col z-10">
         {/* Main Content Area */}

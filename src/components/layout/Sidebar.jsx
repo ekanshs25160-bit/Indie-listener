@@ -22,7 +22,6 @@ const Sidebar = () => {
 
   const libraryItems = [
     { label: "Liked Songs", desc: "Playlist • 874 songs", icon: Heart, bg: "bg-indigo-500", active: false },
-    { label: "Travis Scott", desc: "Artist", image: "https://i.scdn.co/image/ab6761610000e5ebd9fdfe0fbadaebe43a49f1db", active: true },
     { label: "Chill Vibes", desc: "Playlist • Nick", icon: ListMusic, bg: "bg-purple-100 text-purple-600", active: false },
   ];
 

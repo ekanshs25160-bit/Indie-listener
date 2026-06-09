@@ -1,3 +1,12 @@
+import n95Art from "../assets/N95.jpg";
+import n95Mp3 from "../assets/Kendrick Lamar N95.mp3";
+
+import fpsArt from "../assets/fir-per-sho.jpg";
+import fpsMp3 from "../assets/Drake First Person Shooter.mp3";
+
+import namastuteArt from "../assets/namastute.webp";
+import namastuteMp3 from "../assets/Namastute 2021.mp3";
+
 export const mockTracks = [
   {
     "id": "track_001",
@@ -6,10 +15,10 @@ export const mockTracks = [
     "album": "Mr. Morale & the Big Steppers",
     "genre": "Hip Hop",
     "subgenre": "Conscious Rap / West Coast Hip Hop",
-    "duration": "3:15",
+    "duration": 195,
     "release_year": 2022,
-    "albumArt": "https://i.scdn.co/image/ab67616d0000b2732a7dbbbe9f9ea175b2257d07",
-    "src": "src/assets/n95.jpeg",
+    "albumArt": n95Art,
+    "src": n95Mp3,
     "metrics": {
       "plays": 450231900,
       "likes": 8920100
@@ -22,10 +31,10 @@ export const mockTracks = [
     "album": "For All the Dogs",
     "genre": "Hip Hop",
     "subgenre": "Trap / Pop Rap",
-    "duration": "4:07",
+    "duration": 247,
     "release_year": 2023,
-    "albumArt": "https://i.scdn.co/image/ab67616d0000b2734f0c5a2789178cc0a12e5e78",
-    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "albumArt": fpsArt,
+    "src": fpsMp3,
     "metrics": {
       "plays": 312045000,
       "likes": 6432000
@@ -38,10 +47,10 @@ export const mockTracks = [
     "album": "Nayaab",
     "genre": "Hip Hop",
     "subgenre": "Desi Hip Hop / Hardcore Rap",
-    "duration": "3:42",
+    "duration": 222,
     "release_year": 2022,
-    "albumArt": "https://i.scdn.co/image/ab67616d0000b27376c666572e8c257b4946ad9b",
-    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "albumArt": namastuteArt,
+    "src": namastuteMp3,
     "metrics": {
       "plays": 25400100,
       "likes": 984000
