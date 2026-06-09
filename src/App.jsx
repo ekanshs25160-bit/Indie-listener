@@ -5,23 +5,56 @@ import PlayerBar from './components/layout/PlayerBar'
 import Home from './pages/Home'
 import Search from './pages/Search'
 import { AudioProvider } from './context/AudioContext'
+import { useAudio } from './hooks/useAudio'
+import defaultHero from './assets/hero.png' // Fallback when no music is playing
 
+// 1. Create a dedicated AppLayout component that can freely consume useAudio()
+const AppLayout = () => {
+  const { currentTrack } = useAudio();
+
+  // Dynamically switch background source: use album art if playing, otherwise fall back to your hero graphic
+  const currentBg = currentTrack?.albumArt ? currentTrack.albumArt : defaultHero;
+  return (
+    <div className="flex h-screen w-full text-black overflow-hidden font-sans relative">
+      {/* Dynamic Background Image with ambient animation/transition */}
+      {currentBg && (
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 ease-in-out scale-105"
+          style={{ 
+            backgroundImage: `url(${currentBg})`,
+            filter: "blur(40px) brightness(1.1)",
+            opacity: 0.45
+          }}
+        />
+      )}
+      {/* Light Overlay to keep readability */}
+      <div className="absolute inset-0 z-0 bg-[#f5f5f5]/65 pointer-events-none" />
+
+      <div className="flex-1 relative overflow-hidden flex flex-col z-10">
+        {/* Main Content Area */}
+        <main className="flex-1 relative z-10 overflow-hidden flex flex-col">
+          <div className="flex-1 overflow-hidden">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+            </Routes>
+          </div>
+          
+          <div className="z-50 w-full px-8 pb-6 pt-2 shrink-0">
+            <PlayerBar />
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+// 2. Keep the root App component strictly wrapping everything in the Provider
 const App = () => {
   return (
     <AudioProvider>
       <BrowserRouter>
-        <div className="flex min-h-screen bg-neutral-900 text-white">
-          <Sidebar />
-          <div className="flex-1 flex flex-col mb-24">
-            <main className="flex-1 p-6 overflow-y-auto">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/search" element={<Search />} />
-              </Routes>
-            </main>
-          </div>
-          <PlayerBar />
-        </div>
+        <AppLayout />
       </BrowserRouter>
     </AudioProvider>
   )

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Hide scrollbars cross-browser */
+.hidden-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden-scrollbar,
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* Quick reset to make sure scrollbars look good on your dark theme application */
 body {
   background-color: #121212;

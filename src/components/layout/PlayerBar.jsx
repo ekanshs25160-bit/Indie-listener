@@ -55,102 +55,102 @@ const PlayerBar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-24 bg-neutral-950/80 backdrop-blur-md border-t border-neutral-800/40 z-50 px-6 grid grid-cols-3 items-center">
-      <div className="flex items-center gap-3 min-w-0">
+    <div className="w-full h-[88px] bg-[#1a1a1a]/95 backdrop-blur-2xl border border-white/10 z-50 px-6 grid grid-cols-3 items-center rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+      <div className="flex items-center gap-4 min-w-0">
         {currentTrack ? (
           <>
             <img
               src={currentTrack.albumArt}
               alt=""
-              className="w-12 h-12 rounded object-cover border border-neutral-800 flex-shrink-0"
+              className="w-14 h-14 rounded-xl object-cover shadow-md flex-shrink-0"
             />
             <div className="truncate">
-              <h4 className="text-sm font-medium text-neutral-200 truncate">
+              <h4 className="text-base font-semibold text-neutral-100 truncate">
                 {currentTrack.title}
               </h4>
-              <p className="text-xs text-emerald-400 font-mono mt-0.5 truncate">
+              <p className="text-sm text-neutral-400 mt-0.5 truncate">
                 {currentTrack.artist}
               </p>
             </div>
           </>
         ) : (
-          <div className="text-xs font-mono text-neutral-600">Play music</div>
+          <div className="text-sm text-neutral-500">Play music</div>
         )}
       </div>
 
-      <div className="flex flex-col items-center gap-1.5 justify-center">
+      <div className="flex flex-col items-center gap-2 justify-center w-full max-w-md mx-auto">
         <div className="flex items-center gap-6 justify-center text-neutral-400">
           <button
             onClick={() => setIsShuffle(!isShuffle)}
-            className={`transition-colors w-10 h-10 flex items-center justify-center ${
+            className={`transition-colors w-8 h-8 flex items-center justify-center ${
               isShuffle
                 ? "text-emerald-400 hover:text-emerald-300"
                 : "text-neutral-400 hover:text-neutral-200"
             }`}
           >
-            <Shuffle size={20} />
+            <Shuffle size={18} />
           </button>
 
           <button
             onClick={skipPrevious}
-            className="hover:text-neutral-200 transition-colors w-10 h-10 flex items-center justify-center"
+            className="hover:text-white transition-colors w-8 h-8 flex items-center justify-center"
           >
-            <SkipBack size={20} />
+            <SkipBack size={20} fill="currentColor" />
           </button>
 
           <button
             onClick={togglePlay}
-            className="w-10 h-10 rounded-lg bg-emerald-500 text-neutral-950 flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md"
           >
             {isPlaying ? (
               <Pause size={20} fill="currentColor" />
             ) : (
-              <Play size={20} fill="currentColor" />
+              <Play size={20} fill="currentColor" className="ml-1" />
             )}
           </button>
 
           <button
             onClick={skipNext}
-            className="hover:text-neutral-200 transition-colors w-10 h-10 flex items-center justify-center"
+            className="hover:text-white transition-colors w-8 h-8 flex items-center justify-center"
           >
-            <SkipForward size={20} />
+            <SkipForward size={20} fill="currentColor" />
           </button>
 
           <button
             onClick={() => setIsRepeat(!isRepeat)}
-            className={`transition-colors w-10 h-10 flex items-center justify-center ${
+            className={`transition-colors w-8 h-8 flex items-center justify-center ${
               isRepeat
                 ? "text-emerald-400 hover:text-emerald-300"
                 : "text-neutral-400 hover:text-neutral-200"
             }`}
           >
-            <Repeat size={20} />
+            <Repeat size={18} />
           </button>
         </div>
-        {/* hardcoded progress bar*/}
-        <div className="w-full flex items-center gap-3 font-mono text-[11px] text-neutral-500 select-none">
-          <span>{formatTime(progress)}</span>
+        
+        <div className="w-full flex items-center gap-3 text-[11px] font-medium text-neutral-400 select-none">
+          <span className="w-8 text-right">{formatTime(progress)}</span>
           <input
             type="range"
             min="0"
             max={duration || 0}
             value={progress}
             onChange={(e) => seekAudio(parseFloat(e.target.value))}
-            className="flex-1 h-1 bg-neutral-800 rounded-full appearance-none cursor-pointer accent-emerald-400 focus:outline-none"
+            className="flex-1 h-1.5 bg-neutral-700/50 rounded-full appearance-none cursor-pointer focus:outline-none overflow-hidden"
             style={{
-              background: `linear-gradient(to right, #10b981 0%, #10b981 ${progressPercentage}%, #262626 ${progressPercentage}%, #262626 100%)`,
+              background: `linear-gradient(to right, #10b981 0%, #10b981 ${progressPercentage}%, rgba(255,255,255,0.1) ${progressPercentage}%, rgba(255,255,255,0.1) 100%)`,
             }}
           />
-          <span>{formatTime(duration)}</span>
+          <span className="w-8">{formatTime(duration)}</span>
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-end gap-3 text-neutral-400 pr-2">
         <button
           onClick={toggleMute}
-          className="text-neutral-400 hover:text-neutral-50 transition-colors"
+          className="hover:text-white transition-colors"
         >
-          {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
+          {volume === 0 ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
         <input
           type="range"
@@ -159,9 +159,9 @@ const PlayerBar = () => {
           step="0.01"
           value={volume}
           onChange={handleVolumeChange}
-          className="w-24 h-1 rounded-lg appearance-none cursor-pointer accent-emerald-400 focus:outline-none transition-all"
+          className="w-24 h-1.5 bg-neutral-700/50 rounded-full appearance-none cursor-pointer focus:outline-none"
           style={{
-            background: `linear-gradient(to right, #10b981 0%, #10b981 ${volumePercentage}%, #262626 ${volumePercentage}%, #262626 100%)`,
+            background: `linear-gradient(to right, #ffffff 0%, #ffffff ${volumePercentage}%, rgba(255,255,255,0.1) ${volumePercentage}%, rgba(255,255,255,0.1) 100%)`,
           }}
         />
       </div>
