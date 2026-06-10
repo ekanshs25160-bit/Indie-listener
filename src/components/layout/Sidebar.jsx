@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { 
   Home, 
+  Search,
   Clock, 
   Users, 
   Download,
@@ -15,6 +16,7 @@ import {
 const Sidebar = () => {
   const navItems = [
     { path: "/", label: "Home", icon: Home },
+    { path: "/search", label: "Search", icon: Search },
     { path: "/recents", label: "Recents", icon: Clock },
     { path: "/followed", label: "Followed artists", icon: Users },
     { path: "/downloaded", label: "Downloaded", icon: Download },

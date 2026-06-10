@@ -21,7 +21,8 @@ export const mockTracks = [
     "src": n95Mp3,
     "metrics": {
       "plays": 450231900,
-      "likes": 8920100
+      "likes": 8920100,
+      "monthlyListeners": 65430200
     }
   },
   {
@@ -37,7 +38,8 @@ export const mockTracks = [
     "src": fpsMp3,
     "metrics": {
       "plays": 312045000,
-      "likes": 6432000
+      "likes": 6432000,
+      "monthlyListeners": 84120300
     }
   },
   {
@@ -53,7 +55,8 @@ export const mockTracks = [
     "src": namastuteMp3,
     "metrics": {
       "plays": 25400100,
-      "likes": 984000
+      "likes": 984000,
+      "monthlyListeners": 1820400
     }
   }
 ]
