@@ -45,10 +45,14 @@ const PlayerBar = () => {
     progress,
     duration,
     seekAudio,
+    queue,
   } = useAudio();
 
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(true); // Example initial state from image
+
+  const currentIndex = queue && currentTrack ? queue.findIndex((t) => t.id === currentTrack.id) : -1;
+  const nextTrack = currentIndex !== -1 && queue.length > 0 ? queue[(currentIndex + 1) % queue.length] : null;
 
   // Progress percentage for linear gradient styling
   const progressPercentage = duration > 0 ? (progress / duration) * 100 : 0;
@@ -66,7 +70,7 @@ const PlayerBar = () => {
   };
 
   return (
-    <div className="w-full h-[110px] bg-[#1a1a1d] z-50 px-8 flex items-center justify-between rounded-[2rem] border border-[#303035] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+    <div className="w-full h-[110px]  bg-black/20 backdrop-blur-md shadow-sm z-50 px-8 flex items-center justify-between rounded-[2rem] border border-[#303035]">
       {/* Left Block: Artwork, Text, Likes */}
       <div className="flex items-center gap-6 w-80">
         {currentTrack ? (
@@ -186,12 +190,33 @@ const PlayerBar = () => {
       </div>
 
       {/* Right Block: Panel with mini info & volume */}
-      <div className="flex items-center gap-3 pr-2 h-full py-2">
-        <div className="flex flex-col gap-2.5 h-full py-1 bg-[#242429] p-3 px-4 rounded-[1.5rem] border border-[#303035] justify-between">
-            {/* Top Row: Mini Track Info & Menu */}
-            <div className="flex items-center justify-between w-full">
-              <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Playing Next</span>
-              <button className="text-neutral-400 hover:text-white transition-colors">
+      <div className="flex items-center gap-3 pr-2 h-full py-2 w-80 justify-end">
+        <div className="flex flex-col gap-2.5 h-full py-1 bg-[#242429] p-3 px-4 rounded-[1.5rem] border border-[#303035] justify-between w-full">
+            {/* Next in queue */}
+            <div className="flex items-center justify-between mt-2 w-full gap-4">
+              {nextTrack ? (
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
+                    Playing Next
+                  </span>
+                  <span className="text-xs font-bold text-white truncate mt-1">
+                    {nextTrack.title}
+                  </span>
+                  <span className="text-[10px] text-neutral-400 truncate mt-0.5 leading-none">
+                    {nextTrack.artist}
+                  </span>
+                </div>
+              ) : (
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
+                    Playing Next
+                  </span>
+                  <span className="text-xs font-semibold text-neutral-500 mt-1.5">
+                    No upcoming tracks
+                  </span>
+                </div>
+              )}
+              <button className="text-neutral-400 hover:text-white transition-colors flex-shrink-0">
                 <RightPanelMenuIcon />
               </button>
             </div>

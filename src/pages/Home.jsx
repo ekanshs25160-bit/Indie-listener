@@ -98,7 +98,7 @@ export default function Home() {
       </div>
 
       {/* Main Content Split */}
-      <div className="flex gap-6 flex-1 min-h-0 overflow-hidden pb-4 mt-2">
+      <div className="flex pl- flex-1 min-h-0 overflow-hidden pb-4 mt-2">
         {/* Sidebar - fixed on the left */}
         <div className="ml-2">
           <Sidebar />
@@ -108,12 +108,11 @@ export default function Home() {
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
           {/* Scrolling Center & Right Area */}
           <div className="flex gap-6 flex-1 min-h-0">
-            {/* Scrollable Center Content */}
-            <div className="flex-1 overflow-y-auto hidden-scrollbar pb-8 pr-2">
-              {/* Top section: Artist Card & Badge */}
+            
               <div className="flex gap-6 relative z-10">
                 {/* White Artist Card */}
 
+                {/* Top section: Artist Card & Badge */}
                 {currentTrack ? (
                   <>
                     <div className="bg-white rounded-[2rem] p-6 w-[340px] text-black shadow-2xl flex flex-col relative shrink-0">
@@ -171,35 +170,19 @@ export default function Home() {
                   ""
                 )}
               </div>
-
-              {/* Bottom Cards Row */}
-              <div className="grid grid-cols-12 gap-5 mt-10">
-                {/* Queue */}
-                <div className="col-span-12 xl:col-span-7 bg-white/20 backdrop-blur-md rounded-[2rem] p-5 shadow-sm border border-white/10">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="font-bold text-lg">Coming Up Next</h3>
-                    <button className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
-                      <Maximize2 size={14} />
-                    </button>
-                  </div>
+              {/* Center Content: Queue */}
+            <div className="flex-1 flex flex-col min-h-0">
+              <div className="flex-1 bg-white/20 backdrop-blur-md shadow-sm rounded-[2rem] p-4 border border-white/10 flex flex-col min-h-0">
+                <div className="flex justify-between items-center mb-4 shrink-0">
+                  <h4 className="font-bold text-lg">Coming Up Next</h4>
+                  <button className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <Maximize2 size={14} />
+                  </button>
+                </div>
+                
+                {/* Scrollable Songs List */}
+                <div className="flex-1 overflow-y-auto hidden-scrollbar pb-2">
                   <div className="space-y-3">
-                    {/* {mockTracks.slice(0, 4).map((track, i) => (
-                    <div key={track.id} onClick={()=>playTrack(track, mockTracks)} className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-2 rounded-xl transition-colors">
-                      <span className="text-neutral-300 font-medium w-4 text-center flex-shrink-0">{i + 1}</span>
-                      <img src={track.albumArt} alt="" className="w-10 h-10 rounded-md shadow-sm flex-shrink-0" />
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold truncate">{track.title}</p>
-                        <p className="text-xs text-neutral-400 truncate mt-0.5">{track.artist}</p>
-                      </div>
-                      
-                      <span className="text-xs text-neutral-300 font-mono w-12 text-right flex-shrink-0">{formatTime(track.duration)}</span>
-                      <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="text-neutral-300 hover:text-white"><Plus size={18} /></button>
-                        <button className="text-emerald-400 hover:text-emerald-300"><Heart size={18} fill="currentColor" /></button>
-                      </div>
-                    </div>
-                  ))} */}
-
                     {loading ? (
                       <div className="flex justify-center py-8">
                         <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
@@ -262,7 +245,7 @@ export default function Home() {
             </div>
 
             {/* Right Sidebar: Friend Activity - Independent Scroll */}
-            <div className="w-[300px] mr-2 shrink-0 bg-[#1a1a1a]/80 backdrop-blur-2xl rounded-[2rem] p-5 shadow-2xl border border-white/5 flex flex-col h-full overflow-y-auto hidden-scrollbar relative z-10">
+            <div className="w-[300px] mr-2 shrink-0 bg-black/40 backdrop-blur-md shadow-sm rounded-[2rem] p-5 shadow-2xl border border-white/5 flex flex-col h-full overflow-y-auto hidden-scrollbar relative z-10">
               <div className="flex justify-between items-center mb-6 shrink-0">
                 <h3 className="font-bold text-sm text-neutral-200">
                   Friend Activity

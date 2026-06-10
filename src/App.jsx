@@ -6,7 +6,7 @@ import Home from './pages/Home'
 import Search from './pages/Search'
 import { AudioProvider } from './context/AudioContext'
 import { useAudio } from './hooks/useAudio'
-import defaultHero from './assets/gay-background.webp' // Fallback when no music is playing
+import defaultHero from './assets/Screenshot 2026-06-10 at 3.20.57 PM.png' // Fallback when no music is playing
 
 // 1. Create a dedicated AppLayout component that can freely consume useAudio()
 const AppLayout = () => {

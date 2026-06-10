@@ -30,9 +30,7 @@ const Sidebar = () => {
   return (
     <aside className="w-[280px] h-full flex flex-col gap-4 sticky top-0 select-none overflow-y-auto hidden-scrollbar pb-24">
       {/* Top Nav Block */}
-      <div className="bg-[#1a1a1a] rounded-[1.5rem] p-4 flex flex-col gap-4 shadow-xl border border-white/5">
-        
-
+      <div className=" bg-black/40 backdrop-blur-md shadow-sm rounded-[1.5rem] p-4 flex flex-col gap-4 border border-white/5">
         <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -61,7 +59,7 @@ const Sidebar = () => {
 
       
       {/* Library Block */}
-      <div className="bg-[#1a1a1a] rounded-[1.5rem] p-4 flex flex-col flex-1 shadow-xl border border-white/5 min-h-0">
+      <div className=" bg-black/40 backdrop-blur-md shadow-sm rounded-[1.5rem] p-4 flex flex-col flex-1 border border-white/5 min-h-0">
         <div className="flex items-center justify-between px-3 py-2 mb-2">
           <div className="flex items-center gap-3 text-neutral-400 font-medium hover:text-white transition-colors cursor-pointer">
             <LibraryIcon size={20} />
