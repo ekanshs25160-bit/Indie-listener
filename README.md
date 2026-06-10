@@ -1,4 +1,4 @@
-# Indie-Streamer (Gay Listens)
+# Super Culture
 
 An elegant, dark-themed indie music streaming web application built with React, Vite, and Tailwind CSS. The app features a layout inspired by modern music streaming services, with global audio controls and future integration with the Jamendo API.
 
