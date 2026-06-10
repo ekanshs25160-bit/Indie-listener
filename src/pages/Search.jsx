@@ -30,7 +30,7 @@ export default function Search() {
   }, [query]);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-hidden px-6 pt-4">
+    <div className="flex flex-col backdrop-blur-md shadow-sm h-full w-full overflow-hidden px-6 pt-4">
       {/* Fixed Top Header */}
       <div className="flex items-center justify-between w-full pb-4 shrink-0 z-20 px-2">
         <div className="flex items-center gap-4">

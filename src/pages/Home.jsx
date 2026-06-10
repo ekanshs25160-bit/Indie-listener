@@ -113,9 +113,9 @@ export default function Home() {
                 {/* White Artist Card */}
 
                 {/* Top section: Artist Card & Badge */}
-                {currentTrack ? (
+                {/* {currentTrack ? (
                   <>
-                    <div className="bg-white rounded-[2rem] p-6 w-[340px] text-black shadow-2xl flex flex-col relative shrink-0">
+                    <div className="bg-white rounded-[2rem] p-6 h-75 w-[340px] text-black shadow-2xl flex flex-col relative shrink-0">
                       <div className="flex justify-between items-start mb-4">
                         <img
                           src={currentTrack.albumArt}
@@ -168,7 +168,7 @@ export default function Home() {
                   </>
                 ) : (
                   ""
-                )}
+                )} */}
               </div>
               {/* Center Content: Queue */}
             <div className="flex-1 flex flex-col min-h-0">

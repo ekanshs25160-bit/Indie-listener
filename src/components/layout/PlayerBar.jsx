@@ -26,7 +26,13 @@ const formatTime = (timeInSeconds) => {
 
 // Custom SVG for the Right Panel Menu Icon
 const RightPanelMenuIcon = () => (
-  <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="22"
+    height="16"
+    viewBox="0 0 22 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <rect width="22" height="2" rx="1" fill="white" />
     <rect y="6" width="22" height="2" rx="1" fill="white" />
     <circle cx="11" cy="14" r="1" fill="white" />
@@ -46,17 +52,25 @@ const PlayerBar = () => {
     duration,
     seekAudio,
     queue,
+    isRepeat,
+    isShuffle,
+    toggleRepeat,
+    toggleShuffle,
   } = useAudio();
 
-  const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(true); // Example initial state from image
 
-  const currentIndex = queue && currentTrack ? queue.findIndex((t) => t.id === currentTrack.id) : -1;
-  const nextTrack = currentIndex !== -1 && queue.length > 0 ? queue[(currentIndex + 1) % queue.length] : null;
+  const currentIndex =
+    queue && currentTrack
+      ? queue.findIndex((t) => t.id === currentTrack.id)
+      : -1;
+  const nextTrack =
+    currentIndex !== -1 && queue.length > 0
+      ? queue[(currentIndex + 1) % queue.length]
+      : null;
 
   // Progress percentage for linear gradient styling
   const progressPercentage = duration > 0 ? (progress / duration) * 100 : 0;
-  
+
   // Volume bar percentage
   const volumePercentage = Math.round(volume * 100);
 
@@ -121,7 +135,7 @@ const PlayerBar = () => {
         {/* Playback Controls */}
         <div className="flex items-center gap-5 justify-center text-neutral-400">
           <button
-            onClick={() => setIsShuffle(!isShuffle)}
+            onClick={toggleShuffle}
             className={`transition-colors w-9 h-9 flex items-center justify-center ${
               isShuffle
                 ? "text-emerald-400 hover:text-emerald-300"
@@ -144,8 +158,14 @@ const PlayerBar = () => {
             className="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md"
           >
             {isPlaying ? (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 3H8V15H6V3ZM10 3H12V15H10V3Z" fill="black"/>
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M6 3H8V15H6V3ZM10 3H12V15H10V3Z" fill="black" />
               </svg>
             ) : (
               <Play size={18} fill="currentColor" className="ml-1" />
@@ -160,7 +180,7 @@ const PlayerBar = () => {
           </button>
 
           <button
-            onClick={() => setIsRepeat(!isRepeat)}
+            onClick={toggleRepeat}
             className={`transition-colors w-9 h-9 flex items-center justify-center ${
               isRepeat
                 ? "text-emerald-400 hover:text-emerald-300"
@@ -170,7 +190,7 @@ const PlayerBar = () => {
             <Repeat size={18} />
           </button>
         </div>
-        
+
         {/* Progress Bar & Time */}
         <div className="w-full flex items-center gap-3 text-xs font-semibold text-neutral-300 select-none">
           <span className="w-9 text-right">{formatTime(progress)}</span>
@@ -191,59 +211,68 @@ const PlayerBar = () => {
 
       {/* Right Block: Panel with mini info & volume */}
       <div className="flex items-center gap-3 pr-2 h-full py-2 w-80 justify-end">
-        <div className="flex flex-col gap-2.5 h-full py-1 bg-[#242429] p-3 px-4 rounded-[1.5rem] border border-[#303035] justify-between w-full">
-            {/* Next in queue */}
-            <div className="flex items-center justify-between mt-2 w-full gap-4">
-              {nextTrack ? (
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
-                    Playing Next
-                  </span>
-                  <span className="text-xs font-bold text-white truncate mt-1">
-                    {nextTrack.title}
-                  </span>
-                  <span className="text-[10px] text-neutral-400 truncate mt-0.5 leading-none">
-                    {nextTrack.artist}
-                  </span>
-                </div>
-              ) : (
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
-                    Playing Next
-                  </span>
-                  <span className="text-xs font-semibold text-neutral-500 mt-1.5">
-                    No upcoming tracks
-                  </span>
-                </div>
-              )}
-              <button className="text-neutral-400 hover:text-white transition-colors flex-shrink-0">
-                <RightPanelMenuIcon />
+        <div className="flex flex-col gap-2.5 h-full py-1 bg-black/10 p-3 backdrop-blur-md shadow-sm px-4 rounded-[1.5rem] border border-[#303035] justify-between w-full">
+          {/* Next in queue */}
+          <div className="flex items-center justify-between mt-2 w-full gap-4">
+            {nextTrack ? (
+              <div className="flex flex-col min-w-0">
+                <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
+                  Playing Next
+                </span>
+                <span className="text-xs font-bold text-white truncate mt-1">
+                  {nextTrack.title}
+                </span>
+                <span className="text-[10px] text-neutral-400 truncate mt-0.5 leading-none">
+                  {nextTrack.artist}
+                </span>
+              </div>
+            ) : (
+              <div className="flex flex-col min-w-0">
+                <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest leading-none">
+                  Playing Next
+                </span>
+                <span className="text-xs font-semibold text-neutral-500 mt-1.5">
+                  No upcoming tracks
+                </span>
+              </div>
+            )}
+            <button className="text-neutral-400 hover:text-white transition-colors flex-shrink-0">
+              <RightPanelMenuIcon />
+            </button>
+          </div>
+
+          {/* Bottom Row: Icons & Volume Bar */}
+          <div className="flex items-center gap-3.5 justify-between w-full">
+            <div className="flex items-center gap-2 mb-1.5 w-1/2 justify-end">
+              <button
+                onClick={toggleMute}
+                className="hover:text-white transition-colors text-white"
+              >
+                {volume === 0 ? (
+                  <VolumeX size={16} />
+                ) : (
+                  <Volume2 size={16} fill="white" />
+                )}
               </button>
+              {/* Styling this like a flat bar, not a range input thumb */}
+              <div className="w-50 h-1 bg-neutral-700/50 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-white rounded-full"
+                  style={{ width: `${volumePercentage}%` }}
+                ></div>
+              </div>
+              {/* Actual input for interaction, hidden */}
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="absolute opacity-0 w-24 h-1 cursor-pointer"
+              />
             </div>
-            
-            {/* Bottom Row: Icons & Volume Bar */}
-            <div className="flex items-center gap-3.5 justify-between w-full">
-                
-                <div className="flex items-center gap-2 w-1/2 justify-end">
-                    <button onClick={toggleMute} className="hover:text-white transition-colors text-white">
-                        {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} fill="white"/>}
-                    </button>
-                    {/* Styling this like a flat bar, not a range input thumb */}
-                    <div className="w-24 h-1 bg-neutral-700/50 rounded-full overflow-hidden">
-                        <div className="h-full bg-white rounded-full" style={{ width: `${volumePercentage}%`}}></div>
-                    </div>
-                    {/* Actual input for interaction, hidden */}
-                    <input
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.01"
-                      value={volume}
-                      onChange={handleVolumeChange}
-                      className="absolute opacity-0 w-24 h-1 cursor-pointer"
-                    />
-                </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
